@@ -1,5 +1,5 @@
 from api import api
-from flask import Blueprint, make_response, request
+from flask import Blueprint, make_response, request, jsonify
 from flask.views import MethodView
 
 simple = Blueprint('simple', __name__)
@@ -23,7 +23,12 @@ class EchoRoute(MethodView):
         else:
             return make_response('The id is {}'.format(id), 200)
     def post(self):
-        return make_response(request.json, 200)
+        '''
+        Post in json format to return the same json file
+        '''
+        if request.json == None:
+            return make_response('Please set the Content-Type to application/json', 406)
+        return jsonify(request.json)
 
 echo_route =  EchoRoute.as_view('echo_route')
 api.add_url_rule(
