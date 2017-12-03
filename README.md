@@ -1,7 +1,12 @@
 # flask-rest
 A RESTful service based on the Flaks Python framework
 
+<a href="http://flask.pocoo.org/"><img src="images/flask-python.jpg" /></a>
+
 ## Docker Container 
+
+<a href="https://www.docker.com/what-docker"><img src="images/docker.png" /></a>
+
 This setup requires Docker to run on your PC. I've used Windows and Powershell to run the commands. You can find the downloads for [Windows](https://www.docker.com/docker-windows) and [Mac](https://www.docker.com/docker-mac) at the respective links. 
 
 The Create an image from the Flask service and run it and upload it as a web service, follow these steps:
@@ -78,3 +83,6 @@ docker run -p 8000:8000 flask-rest
 
     More info in the [Azure Docs](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli)
 
+## Create a web service from your Docker image
+
+This chapter is in development.
