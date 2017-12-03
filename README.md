@@ -1,5 +1,5 @@
 # flask-rest
-A RESTful service based on the Flaks Python framework
+A RESTful service based on the Flask Python framework
 
 <a href="http://flask.pocoo.org/"><img src="images/flask-python.jpg" width=600 style="margin: auto; display: block;"/></a>
 
