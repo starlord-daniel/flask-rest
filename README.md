@@ -2,6 +2,8 @@
 A RESTful service based on the Flaks Python framework
 
 ## Docker Container 
+This setup requires Docker to run on your PC. I've used Windows and Powershell to run the commands. You can find the downloads for [Windows](https://www.docker.com/docker-windows) and [Mac](https://www.docker.com/docker-mac) at the respective links. 
+
 The Create an image from the Flask service and run it and upload it as a web service, follow these steps:
 
 ### Build the image by running:
@@ -58,6 +60,8 @@ docker run -p 8000:8000 flask-rest
     ```shell
     pip install --user azure-cli
     ```
+    
+    If this doesn't work, download the installer and follow the instructions up on [Azure Docs](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 1. Login to your container registry:
 
