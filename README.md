@@ -1,11 +1,11 @@
 # flask-rest
 A RESTful service based on the Flaks Python framework
 
-<a href="http://flask.pocoo.org/"><img src="images/flask-python.jpg" width=600 style="horizontal-alignment: center;"/></a>
+<a href="http://flask.pocoo.org/"><img src="images/flask-python.jpg" width=600 style="margin: auto; display: block;"/></a>
 
 ## Docker Container 
 
-<a href="https://www.docker.com/what-docker"><img src="images/docker.png" width=600 style="horizontal-alignment: center;" /></a>
+<a href="https://www.docker.com/what-docker"><img src="images/docker.png" width=600 style="margin: auto; display: block;" /></a>
 
 This setup requires Docker to run on your PC. I've used Windows and Powershell to run the commands. You can find the downloads for [Windows](https://www.docker.com/docker-windows) and [Mac](https://www.docker.com/docker-mac) at the respective links. 
 
