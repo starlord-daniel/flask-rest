@@ -11,6 +11,24 @@ This setup requires Docker to run on your PC. I've used Windows and Powershell t
 
 The Create an image from the Flask service and run it and upload it as a web service, follow these steps:
 
+## Before building the image
+
+Please add a config.json file at the root of your project (same directory the Dockerfile is in) and give it the location of your model and actual model parameters. I've used [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction) for that:
+
+```json
+{
+    "blob": {
+        "account_name": "<STORAGE_NAME>",
+        "account_key": "<STORAGE_KEY>"
+        
+    },
+    "model": {
+        "name": "<Model file name, e.g. knn_1.pkl>",
+        "container": "<Name of the container that contains the model>"
+    } 
+}
+```
+
 ### Build the image by running:
 ```docker
 docker build -t <image-name> .

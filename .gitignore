@@ -102,3 +102,10 @@ ENV/
 
 # Visual Studio Code
 .vscode
+
+# Security settings
+config.json
+
+# actual ml models
+data/*
+!data/*.txt
