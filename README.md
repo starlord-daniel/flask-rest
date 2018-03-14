@@ -112,4 +112,21 @@ docker run -p 8000:8000 flask-rest
 
 ## Create a web service from your Docker image
 
-This chapter is in development.
+Use the [Webapp for containers](https://azure.microsoft.com/en-us/services/app-service/containers/) to use the model from DockerHub or Azure Container Registry. You can find the documentation on the [Azure Documentation](https://docs.microsoft.com/en-us/azure/app-service/containers/) 
+
+## Call the service
+
+We exposed the **/pred** and **/predict** routes in the **main.py** file. It is quite straight-forward to add new routes by following the code. 
+
+The call to the endpoint will look like this:
+
+- Request Headers:
+    - Content-Type: application/json
+- Request Body: 
+    ```json
+    {
+        "image_url":"https://www.gearx.com/blog/wp-content/uploads/2014/10/microlight_jacket_cayenne.jpg"
+    }
+    ```
+- Request Url: Could be anything you publish it to, but for Azure Webapps it is in the format: **<custom-name>.azurewebsites.net/pred**
+
