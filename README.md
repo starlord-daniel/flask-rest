@@ -29,6 +29,15 @@ Please add a config.json file at the root of your project (same directory the Do
 }
 ```
 
+## [Optional] To change the model and the pre-processing pipeline 
+
+To change the model, you have to take notice of the following points:
+- In **modelHelper.py**: import the library that was used to build the model, e.g. from sklearn.neighbors import KNeighborsClassifier
+- In **requirements.txt**: Add the actual library as a requirement, if its not already satisfied
+- In **Dockerfile**: If you use a library that uses additional packages, install them with: RUN apk add <package>
+
+To change the pre-processing, you have to change the **process_image** method in **modelHelper.py** and maybe create additional functions for better readability. Keep in mind that the output of this function is used as input to the model scoring function **label_and_prob** in **modelHelper.py**.
+
 ### Build the image by running:
 ```docker
 docker build -t <image-name> .
