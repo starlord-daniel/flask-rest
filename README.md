@@ -128,5 +128,5 @@ The call to the endpoint will look like this:
         "image_url":"https://www.gearx.com/blog/wp-content/uploads/2014/10/microlight_jacket_cayenne.jpg"
     }
     ```
-- Request Url: Could be anything you publish it to, but for Azure Webapps it is in the format: **<custom-name>.azurewebsites.net/pred**
+- Request Url: Could be anything you publish it to, but for Azure Webapps it is in the format: **\<custom-name\>.azurewebsites.net/pred**
 
