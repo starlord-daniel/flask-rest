@@ -28,12 +28,16 @@ class PredictionRoute(MethodView):
             p_label, p_acc = label_and_prob(image_array, model)
 
             # create the formatted output
-            output = "The predicted label for the image is {p_label} with an accuracy of {p_acc:.2f}".format(
-                p_label = p_label,
-                p_acc = p_acc
-            )
+            output = {
+                "description": "The predicted label for the image is {p_label} with an accuracy of {p_acc:.2f}".format(
+                    p_label = p_label,
+                    p_acc = p_acc
+                    ),
+                "label": str(p_label),
+                "accuracy": "{0:.2f}".format(p_acc)
+            }
 
-            return make_response(output, 200)
+            return make_response(json.dumps(output, indent=4), 200)
         except Exception as e:
             return make_response('An error did occur: {m}'.format(m = str(e)), 500)
 
