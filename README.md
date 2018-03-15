@@ -105,7 +105,7 @@ docker run -p 8000:8000 flask-rest
 
     ```docker 
     docker tag <image-name> <acr-name>.azurecr.io/<repo-name>
-    docker push awesome.azurecr.io/<repo-name>
+    docker push <acr-name>.azurecr.io/<repo-name>
     ```
 
     More info in the [Azure Docs](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli)
