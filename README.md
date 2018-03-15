@@ -34,11 +34,9 @@ Currently, only models build with pickle or gzip compressed pickle models work. 
 ## [Optional] To change the model and the pre-processing pipeline 
 
 To change the model, you have to take notice of the following points:
-- In **modelHelper.py**: import the library that was used to build the model, e.g. from sklearn.neighbors import KNeighborsClassifier
 - In **requirements.txt**: Add the actual library as a requirement, if its not already satisfied
 - In **Dockerfile**: If you use a library that uses additional packages, install them with: RUN apk add <package>
 
-To change the pre-processing, you have to change the **process_image** method in **modelHelper.py** and maybe create additional functions for better readability. Keep in mind that the output of this function is used as input to the model scoring function **label_and_prob** in **modelHelper.py**.
 
 ### Build the image by running:
 ```docker
@@ -107,7 +105,6 @@ docker run -p 8000:8000 flask-rest
 
     ```docker 
     docker tag <image-name> <acr-name>.azurecr.io/<repo-name>
-    docker push awesome.azurecr.io/<repo-name>
     ```
 
     More info in the [Azure Docs](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli)
@@ -122,8 +119,11 @@ We exposed the **/pred** and **/predict** routes in the **main.py** file. It is 
 
 The call to the endpoint will look like this:
 
+<<<<<<< HEAD
 ### Request Headers:
 Content-Type: application/json
+=======
+>>>>>>> e73b6da6a10ac34c4f3771ff43447b636f90cad6
 
 ### Request Body: 
 ```json
