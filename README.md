@@ -29,7 +29,7 @@ Please add a config.json file at the root of your project (same directory the Do
 }
 ```
 
-Currently, only models build with pickle or gzip compressed pickle models work. Specify the gzip compressed models with .gz at the end of the file name to load correctly. 
+*Currently, only models build with pickle or gzip compressed pickle models work. Specify the gzip compressed models with .gz at the end of the file name to load correctly.* 
 
 ## [Optional] To change the model and the pre-processing pipeline 
 
@@ -121,21 +121,6 @@ Use the [Webapp for containers](https://azure.microsoft.com/en-us/services/app-s
 We exposed the **/pred** and **/predict** routes in the **main.py** file. It is quite straight-forward to add new routes by following the code. 
 
 The call to the endpoint will look like this:
-
-<<<<<<< HEAD
-### Request Headers:
-Content-Type: application/json
-=======
-- Request Headers:
-    - Content-Type: application/json
-- Request Body: 
-    ```json
-    {
-        "image_url":"https://www.test.com/testfile"
-    }
-    ```
-- Request Url: Could be anything you publish it to, but for Azure Webapps it is in the format: **\<custom-name\>.azurewebsites.net/pred**
->>>>>>> e73b6da6a10ac34c4f3771ff43447b636f90cad6
 
 ### Request Body: 
 ```json
