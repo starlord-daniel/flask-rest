@@ -1,4 +1,3 @@
-
 from PIL import Image
 from io import BytesIO
 from azure.storage.blob import *
@@ -8,6 +7,7 @@ import os.path
 import json
 import requests
 import numpy as np
+import gzip
 
 # model libraries - these can change, based on the model you are using!
 from sklearn.neighbors import KNeighborsClassifier
@@ -29,13 +29,20 @@ def load_model():
             if(not os.path.exists(path)):
                 print('Loading model...')
                 block_blob_service.get_blob_to_path(container, blob.name, path)
-            
-            model_file = open(path, 'rb')
-            model = pickle.load(model_file,encoding='utf-8')
+
+            model = open_model(path)
             print('Model loaded!')
         return model
     except Exception as e:
         raise Exception("Model could not be loaded. Error: {}".format(str(e)))
+
+def open_model(path):
+    if(path[-3:] == ".gz"):
+        model_file = gzip.open(path,'rb')
+    else:
+        model_file = open(path, 'rb')
+    model = pickle.load(model_file,encoding='utf-8')
+    return model
 
 def process_image(img_url):
     o_img = get_image(img_url)

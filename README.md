@@ -29,6 +29,8 @@ Please add a config.json file at the root of your project (same directory the Do
 }
 ```
 
+Currently, only models build with pickle or gzip compressed pickle models work. Specify the gzip compressed models with .gz at the end of the file name to load correctly. 
+
 ## [Optional] To change the model and the pre-processing pipeline 
 
 To change the model, you have to take notice of the following points:
@@ -120,13 +122,14 @@ We exposed the **/pred** and **/predict** routes in the **main.py** file. It is 
 
 The call to the endpoint will look like this:
 
-- Request Headers:
-    - Content-Type: application/json
-- Request Body: 
-    ```json
-    {
-        "image_url":"https://www.gearx.com/blog/wp-content/uploads/2014/10/microlight_jacket_cayenne.jpg"
-    }
-    ```
-- Request Url: Could be anything you publish it to, but for Azure Webapps it is in the format: **<custom-name>.azurewebsites.net/pred**
+### Request Headers:
+Content-Type: application/json
 
+### Request Body: 
+```json
+{
+    "image_url":"https://www.your-test-image.com/image.jpg"
+}
+```
+### Request Url: 
+Could be anything you publish it to, but for Azure Webapps it is in the format: **\<custom-name\>.azurewebsites.net/pred**
