@@ -10,7 +10,8 @@ import numpy as np
 import gzip
 
 # model libraries - these can change, based on the model you are using!
-from sklearn.neighbors import KNeighborsClassifier
+import cntk as C
+from cntk.ops.functions import load_model
 
 def load_model():
     try:
@@ -30,19 +31,27 @@ def load_model():
                 print('Loading model...')
                 block_blob_service.get_blob_to_path(container, blob.name, path)
 
-            model = open_model(path)
+            model = open_cntk_model(path)
             print('Model loaded!')
         return model
     except Exception as e:
         raise Exception("Model could not be loaded. Error: {}".format(str(e)))
 
-def open_model(path):
+def open_cntk_model(path):
     if(path[-3:] == ".gz"):
-        model_file = gzip.open(path,'rb')
+        model_file = gzip.open(path,'rb').read()
     else:
-        model_file = open(path, 'rb')
-    model = pickle.load(model_file,encoding='utf-8')
+        model_file = open(path, 'rb').read()
+    model = C.load_model(model_file)
     return model
+
+def label_and_prob_cntk(arr, model):
+    predictions = model.eval(arr)
+    top_class = np.argmax(predictions)
+
+    lables = ['croissant', 'sloth']
+
+    return (lables[top_class], predictions[top_class])
 
 def process_image(img_url):
     o_img = get_image(img_url)
@@ -50,14 +59,11 @@ def process_image(img_url):
     r_img = reshape_image(p_img)
     r_arr = np.array(r_img)
     n_arr = normalize(r_arr)
-    return n_arr
     
-def label_and_prob(arr, model):
-    pred_label = model.predict(arr.flatten().reshape(1,-1))
-    pred_prob = model.predict_proba(arr.flatten().reshape(1,-1))
-    index = np.where(model.classes_ == pred_label)
-    return (pred_label[0], pred_prob[0][index][0])
-
+    # Transpose array to ctnk shape - here original shape (128,128,3) to (3,128,128) 
+    t_arr = n_arr.transpose(2,1,0).astype(np.float32)
+    return t_arr
+    
 def get_image(img_url):
     response = requests.get(img_url)
     new_image = Image.open(BytesIO(response.content)).convert('RGB')

@@ -25,16 +25,16 @@ class PredictionRoute(MethodView):
             image_array = process_image(request.json['image_url'])
 
             # run prediction on the model
-            p_label, p_acc = label_and_prob(image_array, model)
+            p_label, p_acc = label_and_prob_cntk(image_array, model)
 
             # create the formatted output
             output = {
-                "description": "The predicted label for the image is {p_label} with an accuracy of {p_acc:.2f}".format(
+                "description": "The predicted label for the image is {p_label} with an accuracy of {p_acc:}".format(
                     p_label = p_label,
                     p_acc = p_acc
                     ),
                 "label": str(p_label),
-                "accuracy": "{0:.2f}".format(p_acc)
+                "accuracy": "{0}".format(p_acc)
             }
 
             return make_response(json.dumps(output, indent=4), 200)

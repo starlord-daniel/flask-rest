@@ -1,7 +1,7 @@
 Flask > 0.9
 requests == 2.18.1
 numpy == 1.13.3
+setuptools
 azure-storage-blob == 1.1.0
 pillow == 3.3.1
-scipy
-sklearn
+cntk
