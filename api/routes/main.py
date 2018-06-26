@@ -10,10 +10,6 @@ import json
 simple = Blueprint('simple', __name__)
 model = load_model()
 
-with open("././config.json", "r") as config_file:
-    config = json.load(config_file)
-    
-
 @simple.route('/')
 @simple.route('/hello')
 def hello():
@@ -38,8 +34,7 @@ class PredictionRoute(MethodView):
                     p_acc = p_acc
                     ),
                 "label": str(p_label),
-                "accuracy": "{0}".format(p_acc),
-                "model": config['model']['name']
+                "accuracy": "{0}".format(p_acc)
             }
 
             return make_response(json.dumps(output, indent=4), 200)
