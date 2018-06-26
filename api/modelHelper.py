@@ -46,9 +46,8 @@ def open_cntk_model(path):
     return model
 
 def label_and_prob_cntk(arr, model):
-    predictions = model.eval(arr)
+    predictions = model.eval(arr)[0]
     top_class = np.argmax(predictions)
-
     lables = ['croissant', 'sloth']
 
     return (lables[top_class], predictions[top_class])
@@ -58,10 +57,8 @@ def process_image(img_url):
     p_img = pad_image(o_img)
     r_img = reshape_image(p_img)
     r_arr = np.array(r_img)
-    n_arr = normalize(r_arr)
-    
-    # Transpose array to ctnk shape - here original shape (128,128,3) to (3,128,128) 
-    t_arr = n_arr.transpose(2,1,0).astype(np.float32)
+    n_arr = normalize(r_arr) 
+    t_arr = n_arr.astype(int).reshape(3,128,128)
     return t_arr
     
 def get_image(img_url):
